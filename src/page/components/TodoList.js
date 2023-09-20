@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './TodoList.scss';
+import siteLogo from '../../assets/images/logo.png';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -113,52 +115,59 @@ function TodoList() {
   };
 
   return (
-    <div>
-      <h2>Todo List</h2>
-      <input
-        data-testid="new-todo-input"
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-      />
-      <button data-testid="new-todo-add-button" onClick={handleAddTodo}>추가</button>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => handleToggleTodo(todo.id, todo.isCompleted, todo.todo)}
-              />
-              {editingTodo === todo.id ? (
+    <div className="todo-list-container">
+      <div className="todo-list-background"></div>
+      <div className="todo-list-header">
+        <img src={siteLogo} alt="Site Logo" className="site-logo" />
+        <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+      </div>
+      <div className="todo-list-content">
+        <h2>Todo List</h2>
+        <input
+            className="new-todo-input"
+            data-testid="new-todo-input"
+            type="text"
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+        />
+        <button className="new-todo-add-button" data-testid="new-todo-add-button" onClick={handleAddTodo}>추가</button>
+        <ul>
+          {todos.map(todo => (
+            <li key={todo.id}>
+              <label>
                 <input
-                  data-testid="modify-input"
-                  type="text"
-                  value={editingContent}
-                  onChange={(e) => setEditingContent(e.target.value)}
+                  type="checkbox"
+                  checked={todo.isCompleted}
+                  onChange={() => handleToggleTodo(todo.id, todo.isCompleted, todo.todo)}
                 />
+                {editingTodo === todo.id ? (
+                  <input
+                    data-testid="modify-input"
+                    type="text"
+                    value={editingContent}
+                    onChange={(e) => setEditingContent(e.target.value)}
+                  />
+                ) : (
+                  <span>{todo.todo}</span>
+                )}
+              </label>
+              {editingTodo === todo.id ? (
+                <>
+                  <button data-testid="submit-button" onClick={() => handleUpdateTodo(todo.id, todo.isCompleted)}>제출</button>
+                  <button data-testid="cancel-button" onClick={() => setEditingTodo(null)}>취소</button>
+                </>
               ) : (
-                <span>{todo.todo}</span>
+                <>
+                  <button data-testid="modify-button" onClick={() => handleEditTodo(todo.id, todo.todo)}>수정</button>
+                  <button data-testid="delete-button" onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
+                </>
               )}
-            </label>
-            {editingTodo === todo.id ? (
-              <>
-                <button data-testid="submit-button" onClick={() => handleUpdateTodo(todo.id, todo.isCompleted)}>제출</button>
-                <button data-testid="cancel-button" onClick={() => setEditingTodo(null)}>취소</button>
-              </>
-            ) : (
-              <>
-                <button data-testid="modify-button" onClick={() => handleEditTodo(todo.id, todo.todo)}>수정</button>
-                <button data-testid="delete-button" onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleLogout}>로그아웃</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
-
-export default TodoList;
+  }
+  
+  export default TodoList;

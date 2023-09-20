@@ -1,0 +1,121 @@
+$background-color: white;
+$input-box-color: #ddd;
+$add-button-color: #444;
+$hover-color: #555;
+$text-padding-horizontal: 1rem; 
+$button-spacing-horizontal: 1rem; 
+$input-spacing-horizontal: 1rem; 
+$text-padding-vertical: 0.5rem;
+$button-spacing-vertical: 0.5rem; 
+$item-spacing: 4rem;
+$checkbox-margin-left: 4rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.todo-list-container {
+  position: relative;
+  width: 100vw;
+}
+
+.todo-list-background {
+  background-image: url('../../assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 15vh;
+  width: 100%;
+}
+
+.todo-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  background-color: #333;
+  padding: 0 1rem;
+  width: 100%;
+  position: absolute;
+  top: 15vh;
+
+  .site-logo {
+    height: 70%;
+  }
+
+  .logout-button {
+    background-color: #444;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #555;
+    }
+  }
+}
+
+.todo-list-content {
+    background-color: $background-color; 
+    padding-top: 15vh; 
+    padding-left: $text-padding-horizontal;
+    padding-right: $text-padding-horizontal;
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      margin-top: $text-padding-vertical;
+    }
+  
+    .new-todo-input {
+      padding: 0.5rem;
+      margin-right: $input-spacing-horizontal;
+      margin-top: $text-padding-vertical;
+      margin-bottom: $text-padding-vertical;
+      border: 1px solid $input-box-color;
+    }
+  
+    .new-todo-add-button, 
+    button[data-testid="modify-button"], 
+    button[data-testid="delete-button"] {
+      padding: 0.5rem 1rem;
+      margin-right: $button-spacing-horizontal;
+      margin-top: $button-spacing-vertical;
+      margin-bottom: $button-spacing-vertical;
+      background-color: $add-button-color;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+  
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+    
+    .todo-item {
+        display: flex;
+        align-items: center;
+    
+        .checkbox {
+          margin-right: $item-spacing;
+          margin-left: $checkbox-margin-left; // 체크박스의 왼쪽 마진 추가
+        }
+    
+        .text {
+          margin-right: $item-spacing;
+        }
+    
+        button[data-testid="modify-button"] {
+          margin-right: $item-spacing;
+        }
+      }
+    }

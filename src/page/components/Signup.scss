@@ -1,0 +1,89 @@
+body, html {
+    overflow-y: hidden;
+}
+
+.signup-background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/images/background.jpg'); 
+    background-position: left center;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.signup-box {
+    width: 21vw;
+    min-width: 400px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.61);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 0;
+    justify-content: center;
+
+    .site-logo {
+        width: 45%;
+        max-width: 500px;
+        margin-bottom: 2vh;
+    }
+
+    .error-message {
+        color: red;
+        margin-bottom: 2vh;
+    }
+
+    form {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+
+        input[type="email"], input[type="password"] {
+            padding: 1.5vh; 
+            width: 90%; 
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+            &:focus {
+                outline: none;
+                border: none;
+            }
+        }
+
+        button {
+            border-radius: 100px;
+            background-color: rgba(0, 0, 0, 0.68);
+            color: white;
+            padding: 1.5vh 0;
+        }
+    }
+
+    .signin-link {
+        margin-top: 2vh;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer-text {
+    position: absolute;
+    bottom: 2vh;
+    left: 1vw;
+    font-size: 0.6vw;
+    max-font-size: 5px;
+
+    span {
+        cursor: pointer;
+        color: #ffffff;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
